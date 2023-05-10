@@ -66,7 +66,7 @@ website_input.grid(column=1, row=1, columnspan=2)
 email_label = Label(text="Email/Username:")
 email_label.grid(column=0, row=2)
 email_input = Entry(width=35)
-email_input.insert(0, "j@jasonbreeedlove.com")
+email_input.insert(0, "")
 email_input.grid(column=1, row=2, columnspan=2)
 
 password_label = Label(text="Password:")
