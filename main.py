@@ -63,6 +63,23 @@ def save():
             password_input.delete(0, END)
 
 
+# ---------------------------- SEARCH SETUP ------------------------------- #
+def search():
+    user_input = website_input.get().title()
+    try:
+        with open("data.json", mode="r") as data:
+            json_data = json.load(data)
+    except FileNotFoundError:
+        messagebox.showinfo(title="Error", message="No Data File Found")
+    else:
+        if user_input in json_data:
+            email = json_data[user_input]["email"]
+            password = json_data[user_input]["password"]
+            messagebox.showinfo(title=user_input, message=f"Email: {email}\nPassword: {password}")
+        else:
+            messagebox.showinfo(title="Error", message=f"No details for {user_input} exists")
+
+
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("Password Manager")
@@ -78,6 +95,8 @@ website_label.grid(column=0, row=1)
 website_input = Entry(width=35)
 website_input.focus()
 website_input.grid(column=1, row=1, columnspan=2)
+search_button = Button(text="Search", width=14, command=search)
+search_button.grid(column=2, row=1)
 
 email_label = Label(text="Email/Username:")
 email_label.grid(column=0, row=2)
